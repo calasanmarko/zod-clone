@@ -1,0 +1,39 @@
+{
+  "name": "zod-clone",
+  "version": "1.0.0",
+  "description": "Generates deeply cloned definitions of Zod schemas.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "publish-npm": "tsc --outDir ./dist && (cp package.json ./dist || xcopy package.json dist /Y) && (cp README.md ./dist || xcopy README.md dist /Y) && (cp LICENSE ./dist || xcopy LICENSE dist /Y) && cd ./dist && npm publish && cd .."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calasanmarko/zod-clone.git"
+  },
+  "keywords": [
+    "zod",
+    "validation",
+    "typescript",
+    "ts",
+    "js",
+    "javascript",
+    "clone",
+    "deep",
+    "type",
+    "schema",
+    "utility",
+    "build",
+    "compiler",
+    "transpiler"
+  ],
+  "author": "Marko Calasan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/calasanmarko/zod-clone/issues"
+  },
+  "homepage": "https://github.com/calasanmarko/zod-clone#readme",
+  "dependencies": {
+    "zod": "^3.22.4"
+  }
+}
