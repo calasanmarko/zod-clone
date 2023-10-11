@@ -36,10 +36,9 @@ export class ZodCloneStore {
 };
 
 /**
- * Returns a stringified version of the Zod schema that can be used to recreate it in another context.
- * @param name The name of the variable to export
- * @param schema 
- * @returns 
+ * Returns a string containing a deeply-nested cloned redefinition of the given schema.
+ * @param name The name of the variable that will contain the cloned schema.
+ * @param schema The schema to clone.
  */
 export const cloneZodSchema = (name: string, schema: ZodObject<any>): string => {
     const cloneZodObject = (obj: ZodType): string => {
