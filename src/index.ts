@@ -7,6 +7,7 @@ Object.defineProperty(RegExp.prototype, "toJSON", {
 
 const typeNameRegex = /"typeName":"(Zod[A-Za-z0-9_]+)"/g;
 const stringRegex = /"regex":"\/(.+)\/"/g;
+const escapeRegex = /"regex":\/.*\\(\\).*\//g;
 
 export class ZodCloneStore {
     private readonly store: Map<string, ZodObject<any>> = new Map();
@@ -16,8 +17,8 @@ export class ZodCloneStore {
         this.generatedPrefix = generatedPrefix || "";
     }
 
-    public add<T extends ZodObject<any>>(name: string, schema: T): T {
-        this.store.set(name, schema);
+    public add<T>(name: string, schema: T): T {
+        this.store.set(name, schema as any);
         return schema;
     }
 
@@ -56,6 +57,7 @@ export const cloneZodSchema = (name: string, schema: ZodObject<any>): string => 
             return stringified
                 .replace(typeNameRegex, '"typeName":z.ZodFirstPartyTypeKind.$1')
                 .replace(stringRegex, '"regex":/$1/')
+                .replace(/"regex":\/.*\//g, (match) => match.replace(/\\\\d/g, ''))
         }
     };
 
